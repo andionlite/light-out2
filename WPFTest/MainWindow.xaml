@@ -1,0 +1,57 @@
+﻿<Window x:Class="WPFTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="800" Height="768"   MinHeight="710"   MinWidth="650"   Background="#414042" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel  Grid.Row="0" Height="600" Width="600">
+            <ItemsControl Name="Board" Background="Red" Margin="0 10 0 0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <UniformGrid Rows="{Binding Rows}" Columns="{Binding Columns}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border                                              
+                        BorderBrush="Black"
+                        BorderThickness="0" 
+                        MouseDown="CellClick"
+                        Margin="0"                      
+                        Tag="{Binding}">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding Image}" ></ImageBrush>
+                            </Border.Background>
+                            <Image  Width="40" Height="60"></Image>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Image Margin="0 ,-290,0,0" HorizontalAlignment="Center"  VerticalAlignment="Center"  Visibility="Collapsed" x:Name="GameStatus"  Source="Assets/PNG/IMAGE_WIN.png"  ></Image>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" >
+            <StackPanel   Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Image  Width="80" Height="80" Source="Assets/PNG/IMAGE_trophy.png"></Image>
+                <TextBlock   Margin="5,16,15,0" FontSize="40" x:Name="UserWins" Width="40" Foreground="White" FontFamily="Source Sans Pro Black"> 0</TextBlock>
+                <Image  Width="80" Height="80" Source="Assets/PNG/IMAGE_switch.png"></Image>
+                <TextBlock x:Name="UserMoves" HorizontalAlignment="Center" Width="100"  Margin="0,16,0,0" FontFamily="Source Sans Pro Black" FontSize="40" Foreground="White">0</TextBlock>
+                <ComboBox  x:Name="CmbGamelevel"   Padding="5"    FontSize="20" FontFamily="Source Sans Pro Black" Height="35"></ComboBox>
+                <Button Padding="5" Margin="30,0,0,0"  x:Name="BtnNewGame"  Height="35" FontFamily="Source Sans Pro Black" FontSize="20" Click="BtnNewGame_Click">Start new game</Button>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+
+
+</Window>
